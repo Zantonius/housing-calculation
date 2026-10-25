@@ -83,16 +83,16 @@ export function AlternativeForm({ initialValues, submitLabel, onSubmit, onCancel
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <Stack>
-        <TextInput label="Name" {...register('name')} error={formState.errors.name?.message} />
+        <TextInput label="Namn" {...register('name')} error={formState.errors.name?.message} />
 
-        <Divider label="Purchase & loan" labelPosition="left" />
+        <Divider label="Köp & lån" labelPosition="left" />
         <SimpleGrid cols={{ base: 1, sm: 2 }}>
-          <NumberFieldInput control={control} name="price" label="Price" />
-          <NumberFieldInput control={control} name="downPayment" label="Down payment" />
+          <NumberFieldInput control={control} name="price" label="Pris" />
+          <NumberFieldInput control={control} name="downPayment" label="Kontantinsats" />
           <NumberFieldInput
             control={control}
             name="interestRatePercent"
-            label="Interest rate"
+            label="Ränta"
             suffix=" %"
             decimalScale={2}
           />
@@ -102,7 +102,7 @@ export function AlternativeForm({ initialValues, submitLabel, onSubmit, onCancel
             render={({ field }) => (
               <Switch
                 mt="xl"
-                label="Interest deduction (ränteavdrag)"
+                label="Ränteavdrag"
                 checked={field.value}
                 onChange={(e) => field.onChange(e.currentTarget.checked)}
               />
@@ -112,7 +112,7 @@ export function AlternativeForm({ initialValues, submitLabel, onSubmit, onCancel
 
         <Stack gap={4}>
           <Text size="sm" fw={500}>
-            Amortization
+            Amortering
           </Text>
           <Controller
             control={control}
@@ -122,8 +122,8 @@ export function AlternativeForm({ initialValues, submitLabel, onSubmit, onCancel
                 value={field.value}
                 onChange={field.onChange}
                 data={[
-                  { value: 'auto', label: 'Auto (LTV rule)' },
-                  { value: 'manual', label: 'Manual' },
+                  { value: 'auto', label: 'Auto (amorteringskrav)' },
+                  { value: 'manual', label: 'Manuell' },
                 ]}
               />
             )}
@@ -132,52 +132,51 @@ export function AlternativeForm({ initialValues, submitLabel, onSubmit, onCancel
             <NumberFieldInput
               control={control}
               name="amortizationPercent"
-              label="Amortization per year"
+              label="Amortering per år"
               suffix=" %"
               decimalScale={2}
             />
           )}
         </Stack>
 
-        <Divider label="Running costs" labelPosition="left" />
+        <Divider label="Löpande kostnader" labelPosition="left" />
         <SimpleGrid cols={{ base: 1, sm: 2 }}>
-          <NumberFieldInput control={control} name="monthlyFee" label="HOA fee / month" />
+          <NumberFieldInput control={control} name="monthlyFee" label="Månadsavgift" />
           <NumberFieldInput
             control={control}
             name="operatingCostMonthly"
-            label="Operating costs / month"
-            description="Electricity, heating, water"
+            label="Driftkostnad / mån"
+            description="El, värme, vatten"
           />
-          <NumberFieldInput control={control} name="insuranceMonthly" label="Insurance / month" />
+          <NumberFieldInput control={control} name="insuranceMonthly" label="Försäkring / mån" />
           <NumberFieldInput
             control={control}
             name="propertyFeeYearly"
-            label="Property fee / year"
-            description="Fastighetsavgift"
+            label="Fastighetsavgift / år"
           />
-          <NumberFieldInput control={control} name="otherMonthly" label="Other / month" />
+          <NumberFieldInput control={control} name="otherMonthly" label="Övrigt / mån" />
         </SimpleGrid>
 
-        <Divider label="One-off costs" labelPosition="left" />
+        <Divider label="Engångskostnader" labelPosition="left" />
         <SimpleGrid cols={{ base: 1, sm: 2 }}>
           <NumberFieldInput
             control={control}
             name="oneOffCosts"
-            label="One-off costs"
-            description="Lagfart, pantbrev, moving etc."
+            label="Engångskostnader"
+            description="Lagfart, pantbrev, flytt m.m."
           />
           <NumberFieldInput
             control={control}
             name="oneOffSpreadYears"
-            label="Spread over"
-            suffix=" years"
-            description="0 excludes them from the monthly cost"
+            label="Fördela över"
+            suffix=" år"
+            description="0 = räknas inte in i månadskostnaden"
           />
         </SimpleGrid>
 
         <Group justify="flex-end" mt="md">
           <Button variant="default" onClick={onCancel}>
-            Cancel
+            Avbryt
           </Button>
           <Button type="submit">{submitLabel}</Button>
         </Group>

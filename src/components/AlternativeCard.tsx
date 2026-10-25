@@ -32,49 +32,49 @@ export function AlternativeCard({ alternative, breakdown: b, onEdit, onDuplicate
             {alternative.name}
           </Title>
           <Text size="sm" c="dimmed">
-            {formatSek(alternative.price)} · loan {formatSek(b.loanAmount)} (
+            {formatSek(alternative.price)} · lån {formatSek(b.loanAmount)} (
             {formatPercent(b.loanToValue)})
           </Text>
         </div>
 
         <div>
           <Text size="xs" tt="uppercase" c="dimmed" fw={600}>
-            Total per month
+            Totalt per månad
           </Text>
           <Text size="xl" fw={700}>
             {formatSek(b.total)}
           </Text>
           <Text size="sm" c="dimmed">
-            {formatSek(b.livingCost)} excl. amortization
+            {formatSek(b.livingCost)} exkl. amortering
           </Text>
         </div>
 
         <Stack gap={2}>
-          <Row label="Interest" value={formatSek(b.interest)} />
+          <Row label="Ränta" value={formatSek(b.interest)} />
           {b.interestDeduction > 0 && (
-            <Row label="Interest deduction" value={`−${formatSek(b.interestDeduction)}`} dimmed />
+            <Row label="Ränteavdrag" value={`−${formatSek(b.interestDeduction)}`} dimmed />
           )}
           <Row
-            label={`Amortization (${b.amortizationPercent} %)`}
+            label={`Amortering (${b.amortizationPercent} %)`}
             value={formatSek(b.amortization)}
           />
-          <Row label="HOA fee" value={formatSek(b.monthlyFee)} />
-          <Row label="Operating costs" value={formatSek(b.operatingCost)} />
-          <Row label="Insurance" value={formatSek(b.insurance)} />
-          {b.propertyFee > 0 && <Row label="Property fee" value={formatSek(b.propertyFee)} />}
-          {b.other > 0 && <Row label="Other" value={formatSek(b.other)} />}
-          {b.oneOff > 0 && <Row label="One-off (spread)" value={formatSek(b.oneOff)} />}
+          <Row label="Månadsavgift" value={formatSek(b.monthlyFee)} />
+          <Row label="Driftkostnad" value={formatSek(b.operatingCost)} />
+          <Row label="Försäkring" value={formatSek(b.insurance)} />
+          {b.propertyFee > 0 && <Row label="Fastighetsavgift" value={formatSek(b.propertyFee)} />}
+          {b.other > 0 && <Row label="Övrigt" value={formatSek(b.other)} />}
+          {b.oneOff > 0 && <Row label="Engångskostnader (fördelade)" value={formatSek(b.oneOff)} />}
         </Stack>
 
         <Group gap="xs" mt="xs">
           <Button size="xs" onClick={onEdit}>
-            Edit
+            Redigera
           </Button>
           <Button size="xs" variant="default" onClick={onDuplicate}>
-            Duplicate
+            Duplicera
           </Button>
           <Button size="xs" variant="subtle" color="red" onClick={onRemove}>
-            Remove
+            Ta bort
           </Button>
         </Group>
       </Stack>

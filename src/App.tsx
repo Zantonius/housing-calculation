@@ -38,17 +38,17 @@ export default function App() {
       <Stack gap="xl">
         <Group justify="space-between" align="flex-end">
           <div>
-            <Title order={1}>Housing cost calculator</Title>
-            <Text c="dimmed">Compare the total monthly cost of different housing alternatives.</Text>
+            <Title order={1}>Boendekalkyl</Title>
+            <Text c="dimmed">Jämför den totala månadskostnaden för olika boendealternativ.</Text>
           </div>
           <Button onClick={() => setEditing({ mode: 'new', draft: createAlternative() })}>
-            Add alternative
+            Lägg till alternativ
           </Button>
         </Group>
 
         {rows.length === 0 ? (
           <Text c="dimmed" ta="center" py="xl">
-            No alternatives yet. Add one to get started.
+            Inga alternativ än. Lägg till ett för att komma igång.
           </Text>
         ) : (
           <>
@@ -69,23 +69,23 @@ export default function App() {
         )}
 
         <Text size="xs" c="dimmed">
-          Auto amortization uses the Swedish loan-to-value rule (2 % above 70 % LTV, 1 % above
-          50 %). Interest deduction is 30 % up to 100 000 kr interest per year, 21 % above.
-          Data is stored only in this browser.
+          Auto-amortering följer amorteringskravet (2 % vid belåningsgrad över 70 %, 1 % över
+          50 %). Ränteavdraget är 30 % på räntekostnader upp till 100 000 kr per år och 21 %
+          därutöver. Uppgifterna sparas bara i den här webbläsaren.
         </Text>
       </Stack>
 
       <Modal
         opened={editTarget !== undefined}
         onClose={() => setEditing(null)}
-        title={editing?.mode === 'new' ? 'Add alternative' : 'Edit alternative'}
+        title={editing?.mode === 'new' ? 'Lägg till alternativ' : 'Redigera alternativ'}
         size="lg"
       >
         {editTarget && (
           <AlternativeForm
             key={editTarget.id}
             initialValues={editTarget}
-            submitLabel={editing?.mode === 'new' ? 'Add' : 'Save'}
+            submitLabel={editing?.mode === 'new' ? 'Lägg till' : 'Spara'}
             onSubmit={handleSubmit}
             onCancel={() => setEditing(null)}
           />

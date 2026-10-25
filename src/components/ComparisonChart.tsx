@@ -17,11 +17,11 @@ interface Props {
 }
 
 const SERIES = [
-  { key: 'netInterest', label: 'Interest (net)', color: 'var(--mantine-color-blue-6)' },
-  { key: 'amortization', label: 'Amortization', color: 'var(--mantine-color-teal-6)' },
-  { key: 'fee', label: 'HOA fee', color: 'var(--mantine-color-violet-6)' },
-  { key: 'running', label: 'Running costs', color: 'var(--mantine-color-orange-6)' },
-  { key: 'oneOff', label: 'One-off (spread)', color: 'var(--mantine-color-gray-6)' },
+  { key: 'netInterest', label: 'Ränta (netto)', color: 'var(--mantine-color-blue-6)' },
+  { key: 'amortization', label: 'Amortering', color: 'var(--mantine-color-teal-6)' },
+  { key: 'fee', label: 'Månadsavgift', color: 'var(--mantine-color-violet-6)' },
+  { key: 'running', label: 'Driftkostnader', color: 'var(--mantine-color-orange-6)' },
+  { key: 'oneOff', label: 'Engångskostnader (fördelade)', color: 'var(--mantine-color-gray-6)' },
 ] as const
 
 export function ComparisonChart({ rows }: Props) {
@@ -37,13 +37,13 @@ export function ComparisonChart({ rows }: Props) {
   return (
     <Card withBorder radius="md" padding="lg">
       <Title order={2} size="h4" mb="md">
-        Monthly cost comparison
+        Jämförelse av månadskostnad
       </Title>
       <ResponsiveContainer width="100%" height={320}>
         <BarChart data={data} margin={{ left: 16 }}>
           <CartesianGrid strokeDasharray="3 3" vertical={false} />
           <XAxis dataKey="name" />
-          <YAxis tickFormatter={(v: number) => `${Math.round(v / 1000)}k`} />
+          <YAxis tickFormatter={(v: number) => `${Math.round(v / 1000)} tkr`} />
           <Tooltip formatter={(v) => formatSek(Number(v))} />
           <Legend />
           {SERIES.map((s) => (

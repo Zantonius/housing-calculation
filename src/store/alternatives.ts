@@ -15,9 +15,9 @@ export const useAlternatives = create<AlternativesState>()(
   persist(
     (set) => ({
       alternatives: [
-        createAlternative({ name: 'Apartment, city' }),
+        createAlternative({ name: 'Lägenhet, stan' }),
         createAlternative({
-          name: 'House, suburb',
+          name: 'Villa, förort',
           price: 5_200_000,
           downPayment: 1_200_000,
           monthlyFee: 0,
@@ -36,7 +36,7 @@ export const useAlternatives = create<AlternativesState>()(
         set((s) => {
           const source = s.alternatives.find((a) => a.id === id)
           if (!source) return s
-          const copy = { ...source, id: crypto.randomUUID(), name: `${source.name} (copy)` }
+          const copy = { ...source, id: crypto.randomUUID(), name: `${source.name} (kopia)` }
           return { alternatives: [...s.alternatives, copy] }
         }),
       remove: (id) =>

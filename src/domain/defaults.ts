@@ -5,7 +5,7 @@ export function createAlternative(
 ): HousingAlternative {
   return {
     id: crypto.randomUUID(),
-    name: 'New alternative',
+    name: 'Nytt alternativ',
     price: 3_000_000,
     downPayment: 450_000,
     interestRatePercent: 3.5,

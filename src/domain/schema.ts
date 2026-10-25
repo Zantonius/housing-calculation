@@ -1,11 +1,11 @@
 import { z } from 'zod'
 
-const amount = z.number({ error: 'Required' }).min(0, 'Must be 0 or more')
-const percent = amount.max(100, 'Must be at most 100')
+const amount = z.number({ error: 'Obligatoriskt' }).min(0, 'Måste vara 0 eller mer')
+const percent = amount.max(100, 'Får vara högst 100')
 
 export const alternativeFormSchema = z
   .object({
-    name: z.string().trim().min(1, 'Required'),
+    name: z.string().trim().min(1, 'Obligatoriskt'),
     price: amount,
     downPayment: amount,
     interestRatePercent: percent,
@@ -18,10 +18,10 @@ export const alternativeFormSchema = z
     propertyFeeYearly: amount,
     otherMonthly: amount,
     oneOffCosts: amount,
-    oneOffSpreadYears: amount.int('Whole years only'),
+    oneOffSpreadYears: amount.int('Ange hela år'),
   })
   .refine((v) => v.downPayment <= v.price, {
-    message: 'Cannot exceed the price',
+    message: 'Får inte överstiga priset',
     path: ['downPayment'],
   })
 
